@@ -1,16 +1,81 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Password Reset with Security Questions</title>
+    <style>
+        .container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.question-container {
+    margin: 15px 0;
+}
+    </style>
 </head>
 <body>
-    <form action="">
-        <input type="text" name="username" id="username">
-        <input type="password" name="password" id="password">
-        <input type="submit" value="Login">
-        <button type="button" onclick="signInWithGoogle()">Sign in with Google</button>
-    </form>
+    <div class="container">
+        <!-- Email Form -->
+        <div id="emailStep" class="step active">
+            <h2>Reset Password</h2>
+            <form id="emailForm">
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <button type="submit">Next</button>
+            </form>
+        </div>
+
+        <!-- Security Questions Form -->
+        <div id="questionsStep" class="step">
+            <h2>Answer Security Questions</h2>
+            <form id="questionsForm">
+                <div id="questionsContainer"></div>
+                <button type="submit">Verify Answers</button>
+            </form>
+        </div>
+
+        <!-- Reset Success Message -->
+        <div id="resetStep" class="step">
+            <h2>Check Your Email</h2>
+            <p>If your answers were correct, you will receive a password reset link via email.</p>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="js/script.js"></script>
 </body>
-<script src="firebase.js" type="module"></script>
 </html>
+
